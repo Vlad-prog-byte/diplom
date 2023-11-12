@@ -1,6 +1,7 @@
-import { Box, Button, FormControl, Input, TextField } from '@mui/material';
-// import axios from 'axios';
-import React, { ChangeEvent, FC, FormEvent } from 'react'
+import { Box } from '@mui/material';
+import axios from 'axios';// import axios from 'axios';
+import React, { ChangeEvent, FC, FormEvent, useEffect, useState } from 'react'
+import { IUser } from '../../mocks/models/User/user';
 import AppRoutes from '../AppRoutes/AppRoutes';
 // import { useSelector } from 'react-redux';
 // import { getAuthPassword, getAuthUsername } from '../../store/entities/auth/selectors/authSelectors';
@@ -9,9 +10,27 @@ import AppRoutes from '../AppRoutes/AppRoutes';
 // import { useAppDispatch } from '../../store/store';
 
 
+
 const Main: FC = () => {
+
+    const [user,setUser] = useState<IUser[]>([]);
+
+    useEffect(() => {
+      fetch('/posts')
+      .then((res) => res.json())
+      .then((data) => setUser(data));
+    }, []);
+
+    console.log(user);
     return (
       <Box sx={{width: "100%", backgroundColor: "white"}}>
+        {!!user ? user.map((value) => {
+            return(
+              <div>
+                <img src={value.avatar} alt="" />
+              </div>
+            );
+        }): null}
         <AppRoutes/>
       </Box>
     )

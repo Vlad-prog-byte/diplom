@@ -33,8 +33,6 @@ const header: IHeaderInfo[] = [
 
 
 const Header: FC<IHeaderProps> = ({ url }) => {
-    console.log(url);
-    console.log(header);
     return (
             <AppBar position="sticky">
                 <Toolbar sx={{justifyContent: "space-between"}}>
