@@ -16,9 +16,7 @@ const Main: FC = () => {
     const [user,setUser] = useState<IUser[]>([]);
 
     useEffect(() => {
-      fetch('/posts')
-      .then((res) => res.json())
-      .then((data) => setUser(data));
+      axios.get('/posts').then((res) => setUser(res.data))
     }, []);
 
     console.log(user);
